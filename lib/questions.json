@@ -1,6 +1,11 @@
-{"questions":[
-	{"question": "Who is Prime Minister of the United Kingdom?", "choices": ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"], "correctAnswer":0},
-	{"question": "North West", "choices": ["What is the name of Kim Kardashian's baby?", "What is the opposite of south?"], "correctAnswer":0},
-	{"question": "What's my favorite color?", "choices": ["Black", "Blue", "Magenta", "Red"], "correctAnswer":1},
-	{"question": "What's the meaning of life?", "choices": ["Too live happily", "To give to the greater good"], "correctAnswer":1}
+{"questions":
+ [
+	{"question": "Pregunta 1", 
+     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
+	{"question": "Pregunta 2", 
+     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
+	{"question": "Pregunta 3", 
+     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
+	{"question": "Pregunta 4", 
+     "choices": ["Too live happily", "To give to the greater good"], "correctAnswer":1}
 ]}

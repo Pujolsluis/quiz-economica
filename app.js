@@ -12,13 +12,13 @@ var express = require('express')
 
 var app = express();
 var port = 3000;
-
+var admin = require('./routes/admin');    
 
 // all environments
 app.set('port', process.env.PORT || port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.favicon());
+//app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
@@ -34,6 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/adminratata', admin.index);
 
 /*
 http.createServer(app).listen(app.get('port'), function(){
@@ -51,15 +52,19 @@ io.sockets.on('connection', function(socket){
 	io.sockets.emit('newUserList', {userList:users});
 
 	socket.on('addUser', function(name){
-	socket.username = name;
-	console.log(name + " has joined");
-	users.push(name);
+        socket.username = name;
+        console.log(name + " has joined");
+        users.push(name);
 		io.sockets.emit('updateUserList', {user:name, connectionType:'add'});
 
 		fs.readFile(__dirname + "/lib/questions.json", "Utf-8", function(err, data){
 			socket.emit('sendQuestions', JSON.parse(data));
 		});
-
+	});
+    
+    socket.on('nextQuestion', function(numQuestion){
+		console.log("La proxima pregunta es: " +  numQuestion);
+        io.sockets.emit('numPregunta', numQuestion);
 	});
 
 	socket.on('disconnect', function(){

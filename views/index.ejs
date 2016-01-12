@@ -5,54 +5,45 @@
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src='/socket.io/socket.io.js'></script>
+    <script src='http://10.111.0.109:3000/socket.io/socket.io.js'></script>
     <script>
-    	var socket = io.connect('http://localhost:3000');
-      var connected = false;
-      var username = '';
-      var questions;
+        var socket = io.connect('http://10.111.0.109:3000');
+        var connected = false;
+        var username = '';
+        var questions;
+        var currentQuestion;
 
-      socket.on('connect', function(){
-        // nothing yet...
-      });
+          socket.on('connect', function(){
+            // nothing yet...
+          });
 
-      socket.on('newUserList', function(data){
-        $(".connectedUsers").html('');
-        $.each(data.userList, function(i, user){
-          $(".connectedUsers").append("<div id='"+user+"'>"+user+"</div>");
-        });
-      });
+          socket.on('newUserList', function(data){
+            $(".connectedUsers").html('');
+            $.each(data.userList, function(i, user){
+              $(".connectedUsers").append("<div id='"+user+"'>"+user+"</div>");
+            });
+          });
 
-      socket.on('updateUserList', function(data){
-    
-        if(data.connectionType ==  'add'){
-          $(".connectedUsers").append("<div id='"+data.user+"'>"+data.user+"</div>");
-        } else {
-          $("#"+data.user).remove();
-        }
-      });
-
-      socket.on('sendQuestions', function(data){
-        $(".show_index").fadeOut('slow', function(){
-          location.replace("#1");
-          question = get_question(0);
-          $(".show_questions").fadeIn('slow');
+        socket.on('updateUserList', function(data){
+            if(data.connectionType ==  'add'){
+              $(".connectedUsers").append("<div id='"+data.user+"'>"+data.user+"</div>");
+            } else {
+              $("#"+data.user).remove();
+            }
         });
         
+        socket.on('numPregunta', function(num){
+            $(".show_index").fadeOut('slow', function(){
+                  question = get_question(num);
+                  $(".show_questions").fadeIn('slow');
+                $(".show_accepted").fadeOut();
+            }); 
+            get_question(num);
+        });    
+        
+      socket.on('sendQuestions', function(data){
         console.log(data);
         questions = data.questions;
-        $.each(questions, function(n, item){
-          i = n+1;
-          $(".questions_pagination").append("<li><a href='javascript:;' class='new_question' data-id='"+i+"' id='question_"+i+"'>"+i+"</a></li>");
-        });
-
-        $(".new_question").on('click', function(){
-          var id = $(this).data('id');
-          id = id - 1;
-          location.replace("#"+id);
-          get_question(id);
-        });
-
       });
 
       function get_question(number){
@@ -60,21 +51,27 @@
           $("#question_title").text("").text(question.question);
           $("#question_options").html("");
           $.each(question.choices, function(i, item){
-            $("#question_options").append("<div><input type='checkbox' value='"+i+"'/> "+item+"</div>");
+            $("#question_options").append("<div><input type='radio' value='"+i+"' name='respuesta'/> "+item+"</div>");
           });
       }
 
       $(document).ready(function(){
         $('#btnJoin').on('click', function(){
-          var username = prompt("Username please");
-          if(username !=''){
+          var username = prompt("Introducir Nombre y Apellido");
+            var regexp = /^\S/;
+          if(regexp.test(username) != false){
             socket.emit('addUser', username);
             connected = true;
           } else {
-            alert("USERNAME PLEASE!");
+            alert("Introducir Nombre y Apellido!");
           }
         });
-
+        
+          $('#btnSend').on('click', function(){
+                $(".show_questions").fadeOut('slow');
+                $(".show_accepted").fadeIn('slow');
+                
+          });
         
       });
 
@@ -84,13 +81,13 @@
     <div class='container-fluid'>
       <div class='row'>
         <div class='span12'>
-          <h1>Quiz Node</h1>
+          <h1>Crisis Economica en Grecia</h1>
         </div>
       </div>
       <div class='row'>
         <div class='span4'>
           <div class='well'>
-            <h3>Players</h3>
+            <h3>Estudiantes</h3>
             <div class='connectedUsers'>
 
             </div>
@@ -98,26 +95,29 @@
         </div>
         <div class='span8'>
           <div class='hero-unit'>
+              
             <div class="show_index">
-              <h2>Welcome to Quiz Node</h2>
+              <h2>Bienvenido a la prueba interactiva</h2>
               <p>
-                Let's see if your gooder then your co-worker at answering random questions with random bogus answers!
+                Vamos a ver cuanto sabes de Grecia y su situación economica
               </p>
-              <button id='btnJoin' class='btn btn-primary'>Start the Quiz</button>
+              <button id='btnJoin' class='btn btn-primary'>Empieza!</button>
             </div>
+              
             <div class='show_questions' style='display:none;'>
-              <h2>Questions</h2>
-              <div class="pagination">
-                <ul class='questions_pagination'>
-                  <!-- filled using jQuery -->
-                </ul>
-              </div>
+              <h2>Pregunta</h2>
               <div id='question'>
                 <h3 id='question_title'></h3>
                 <div id='question_options'></div>
-                <button class='btn btn-success'>Submit</button>
-              </div>
+                <button id='btnSend' class='btn btn-success'>Enviar Respuesta</button>
+              </div>    
             </div>
+              
+            <div class='show_accepted' style='display:none;'>
+              <h2>Pregunta Respondida</h2>
+              <p>Atienda a la exposicion.</p> 
+            </div>
+              
           </div>
         </div>
       </div>

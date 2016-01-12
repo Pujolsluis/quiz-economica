@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src='http://10.111.0.109:3000/socket.io/socket.io.js'></script>
+    <script>
+    	var socket = io.connect('http://10.111.0.109:3000');
+      var connected = false;
+      var username = '';
+      var numQuestion = -1;
+
+      $(document).ready(function(){
+        $('#btnJoin').on('click', function(){
+            numQuestion++;
+            socket.emit('nextQuestion', numQuestion);
+        });
+
+        
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='span12'>
+          <h1>Crisis Economica en Grecia</h1>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='span4'>
+          <div class='well'>
+            <h3>Estudiantes</h3>
+            <div class='connectedUsers'>
+
+            </div>
+          </div>
+        </div>
+        <div class='span8'>
+          <div class='hero-unit'>
+            <div class="show_index">
+              <h2>Bienvenido a la prueba interactiva</h2>
+              <p>
+                Vamos a ver cuanto sabes de Grecia y su situación economica
+              </p>
+              <button id='btnJoin' class='btn btn-primary'>Empieza!</button>
+            </div>
+            <div class='show_questions' style='display:none;'>
+              <h2>Pregunta</h2>
+              <div class="pagination">
+                <ul class='questions_pagination'>
+                  <!-- filled using jQuery -->
+                </ul>
+              </div>
+              <div id='question'>
+                <h3 id='question_title'></h3>
+                <div id='question_options'></div>
+                <button class='btn btn-success'>Enviar Respuesta</button>
+              </div>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
