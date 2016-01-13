@@ -36,9 +36,10 @@
         
         socket.on('numPregunta', function(num){
             $(".show_index").fadeOut('slow', function(){
-                  question = get_question(num);
-                  $(".show_questions").fadeIn('slow');
-                $(".show_accepted").fadeOut();
+              question = get_question(num);
+              $(".show_registered").fadeOut();  
+              $(".show_questions").fadeIn('slow');
+              $(".show_accepted").fadeOut();
             }); 
             get_question(num);
         });    
@@ -65,6 +66,8 @@
           if(regexp.test(username) != false){
             socket.emit('addUser', username);
             connected = true;
+            $(".show_index").fadeOut('slow');
+            $(".show_registered").fadeIn('slow'); 
           } else {
             alert("Introducir Nombre y Apellido!");
           }
@@ -123,6 +126,11 @@
             <div class='show_accepted' style='display:none;'>
               <h2>Pregunta Respondida</h2>
               <p>Atienda a la exposicion.</p> 
+            </div>
+              
+            <div class='show_registered' style='display:none;'>
+              <h2>Registrado</h2>
+              <p>Espere a la primera pregunta.</p> 
             </div>
               
           </div>
