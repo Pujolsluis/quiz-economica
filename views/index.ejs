@@ -38,9 +38,9 @@
         socket.on('numPregunta', function(num){
             $(".show_index").fadeOut('slow', function(){
               question = get_question(num);
-              $(".show_registered").fadeOut();  
+              $(".show_registered").fadeOut('slow');  
               $(".show_questions").fadeIn('slow');
-              $(".show_accepted").fadeOut();
+              $(".show_accepted").fadeOut('slow');
             }); 
             get_question(num);
         });    
@@ -68,14 +68,14 @@
             socket.emit('addUser', username);
             connected = true;
             $(".show_index").fadeOut('fast');
-             $(".show_registered").fadeIn('slow'); 
+            $(".show_registered").fadeIn('slow'); 
           } else {
             alert("Introducir Nombre y Apellido!");
           }
         });
         
           $('#btnSend').on('click', function(){
-              $(".show_questions").fadeOut('slow').fadeIn('slow');
+              $(".show_questions").fadeOut('slow');
                 $(".show_accepted").fadeIn('slow'); 
               userAnswer =  $('input[name=respuesta]:checked').val();
               if(answer == userAnswer)
