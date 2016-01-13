@@ -228,6 +228,9 @@ body {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
+  background-image: url(/bootstrap/img/mainbg.jpg);
+  background-size: 1900;
+  background-repeat: repeat;
 }
 
 a {
@@ -2339,6 +2342,9 @@ table th[class*="span"],
 
 .icon-user {
   background-position: -168px 0;
+  float: right;
+  margin-top: 9%;
+  margin-right: 38%;
 }
 
 .icon-film {
@@ -2359,6 +2365,9 @@ table th[class*="span"],
 
 .icon-ok {
   background-position: -288px 0;
+  float: right;
+  margin-top: 2.4%;
+  margin-right: 62%;
 }
 
 .icon-remove {
@@ -6157,10 +6166,19 @@ a.badge:focus {
   position: fixed;
 }
 
+.iconmain {
+  width: 80px;
+  height: 75px;
+  margin:0 auto;
+  position:block;
+  background-image: url("../img/quizmain.png");
+  background-size: 100% 100%;
+}
+
 @media screen and (max-width: 400px){
     .container-fluid{
       width: 89%;
-      background-color: #ff8000;
+      //background-color: #ff8000;
       margin:0 auto;
       overflow:hidden;
     }
@@ -6168,10 +6186,10 @@ a.badge:focus {
       width: 95%;
     }
     .span8{
-      width: 95%;
+      width: 92%;
     }
     .span12{
-      width: 80%;
+      width: 93.5%;
     }
 
     .hero-unit {
@@ -6200,4 +6218,19 @@ a.badge:focus {
        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     }
+    body{
+      background-size: 100% 100%;
+    }
+    .icon-user {
+  background-position: -168px 0;
+  float: right;
+  margin-top: 8.9%;
+  margin-right: 46%;
+  }
+  .icon-ok {
+  background-position: -288px 0;
+  float: right;
+  margin-top: 5%;
+  margin-right: 30%;
+  }
 }

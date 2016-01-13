@@ -5,10 +5,10 @@
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src='http://localhost:3000/socket.io/socket.io.js'></script>
+    <script src='http://10.0.0.2:3000/socket.io/socket.io.js'></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimun-scale=1.0">
     <script>
-        var socket = io.connect('http://localhost:3000');
+        var socket = io.connect('http://10.0.0.2:3000');
         var connected = false;
         var username = '';
         var questions;
@@ -87,18 +87,21 @@
     </script>
   </head>
   <body>
-    <div class='container-fluid'>
-      <div class='row'>
+        <div class='row'>
         <div class='span12'>
-          <h1>Crisis Economica en Grecia</h1>
+          <div class='well'>
+          <h3>Crisis Economica en Grecia</h1>
+        </div>
         </div>
       </div>
+    <div class='container-fluid'>
+
        <div class='row'>
         <div class='span8'>
           <div class='hero-unit'>
-              
             <div class="show_index">
-              <h2>Bienvenido a la prueba interactiva</h2>
+              <div class='iconmain'></div>
+              <h3>Bienvenido a la prueba interactiva</h2>
               <p>
                 Vamos a ver cuanto sabes de Grecia y su situación economica
               </p>
@@ -123,6 +126,7 @@
               </div>
                           
             <div class='show_registered' style='display:none;'>
+              <div class = 'icon-ok'></div>
               <h2>Registrado</h2>
               <p>Espere a la primera pregunta.</p> 
             </div>
@@ -131,6 +135,7 @@
           </div>
           <div class='span4'>
           <div class='well'>
+            <div class='icon-user'></div>
             <h3>Estudiantes</h3>
             <div class='connectedUsers'>
             </div>
