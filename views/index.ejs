@@ -63,7 +63,7 @@
         $('#btnJoin').on('click', function(){
             username = prompt("Introducir Nombre y Apellido");
             var regexp = /^\S/;
-          if(regexp.test(username) != false){
+          if(regexp.test(username) != false && username != null){
             socket.emit('addUser', username);
             connected = true;
             $(".show_index").fadeOut('slow');
