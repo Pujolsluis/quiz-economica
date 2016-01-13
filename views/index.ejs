@@ -11,7 +11,9 @@
         var connected = false;
         var username = '';
         var questions;
+        var answer;
         var currentQuestion;
+        var userAnswer;
 
           socket.on('connect', function(){
             // nothing yet...
@@ -20,7 +22,7 @@
           socket.on('newUserList', function(data){
             $(".connectedUsers").html('');
             $.each(data.userList, function(i, user){
-              $(".connectedUsers").append("<div id='"+user+"'>"+user+"</div>");
+              $(".connectedUsers").append("<div id='"+user.name+"'>"+user.name+"</div>");
             });
           });
 
@@ -53,11 +55,12 @@
           $.each(question.choices, function(i, item){
             $("#question_options").append("<div><input type='radio' value='"+i+"' name='respuesta'/> "+item+"</div>");
           });
+          answer = question.correctAnswer;
       }
 
       $(document).ready(function(){
         $('#btnJoin').on('click', function(){
-          var username = prompt("Introducir Nombre y Apellido");
+            username = prompt("Introducir Nombre y Apellido");
             var regexp = /^\S/;
           if(regexp.test(username) != false){
             socket.emit('addUser', username);
@@ -68,9 +71,11 @@
         });
         
           $('#btnSend').on('click', function(){
-                $(".show_questions").fadeOut('slow');
-                $(".show_accepted").fadeIn('slow');
-                
+              $(".show_questions").fadeOut('slow');
+                $(".show_accepted").fadeIn('slow'); 
+              userAnswer =  $('input[name=respuesta]:checked').val();
+              if(answer == userAnswer)
+                    socket.emit("addUserPoint", username);  
           });
         
       });
@@ -108,7 +113,9 @@
               <h2>Pregunta</h2>
               <div id='question'>
                 <h3 id='question_title'></h3>
-                <div id='question_options'></div>
+                <form id='answersForm'>
+                    <div id='question_options'></div>
+                </form>
                 <button id='btnSend' class='btn btn-success'>Enviar Respuesta</button>
               </div>    
             </div>

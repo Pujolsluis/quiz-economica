@@ -11,6 +11,13 @@
       var connected = false;
       var username = '';
       var numQuestion = -1;
+        
+    socket.on('userListPoint', function(data){
+        $(".connectedUsers").html('');
+        $.each(data.userList, function(i, user){
+          $(".connectedUsers").append("<div id='"+user.name+"'>"+user.name+"  -  "+user.correctAnswers+"</div>");
+        });
+      });
 
       $(document).ready(function(){
         $('#btnJoin').on('click', function(){
@@ -40,28 +47,7 @@
           </div>
         </div>
         <div class='span8'>
-          <div class='hero-unit'>
-            <div class="show_index">
-              <h2>Bienvenido a la prueba interactiva</h2>
-              <p>
-                Vamos a ver cuanto sabes de Grecia y su situación economica
-              </p>
-              <button id='btnJoin' class='btn btn-primary'>Empieza!</button>
-            </div>
-            <div class='show_questions' style='display:none;'>
-              <h2>Pregunta</h2>
-              <div class="pagination">
-                <ul class='questions_pagination'>
-                  <!-- filled using jQuery -->
-                </ul>
-              </div>
-              <div id='question'>
-                <h3 id='question_title'></h3>
-                <div id='question_options'></div>
-                <button class='btn btn-success'>Enviar Respuesta</button>
-              </div>    
-            </div>
-          </div>
+          <button id='btnJoin' class='btn btn-primary'>Proxima Pregunta!</button>
         </div>
       </div>
     </div>

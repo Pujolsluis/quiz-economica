@@ -42,6 +42,8 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 */
 
+var user = {id:0, name:"", correctAnswers:0}
+var globalID = 0;
 var users = [];
 
 var io = require('socket.io').listen(app.listen(port));
@@ -52,9 +54,15 @@ io.sockets.on('connection', function(socket){
 	io.sockets.emit('newUserList', {userList:users});
 
 	socket.on('addUser', function(name){
+        globalID++;
         socket.username = name;
         console.log(name + " has joined");
-        users.push(name);
+        //users.push(name);
+        users.push({
+            id: globalID,
+            name: name,
+            correctAnswers: 0
+        });
 		io.sockets.emit('updateUserList', {user:name, connectionType:'add'});
 
 		fs.readFile(__dirname + "/lib/questions.json", "Utf-8", function(err, data){
@@ -65,7 +73,23 @@ io.sockets.on('connection', function(socket){
     socket.on('nextQuestion', function(numQuestion){
 		console.log("La proxima pregunta es: " +  numQuestion);
         io.sockets.emit('numPregunta', numQuestion);
+        
 	});
+    
+    socket.on('addUserPoint', function(username){
+        var elementPos = 0;
+        for(var i = 0; i < users.length; i++)
+        {
+            if(users[i].name == username)
+            {
+                elementPos = i;
+                break;
+            }
+        }
+        users[elementPos].correctAnswers++;
+        io.sockets.emit('userListPoint', {userList:users});
+    });
+              
 
 	socket.on('disconnect', function(){
 		console.log(socket.username + " has disconnected");
