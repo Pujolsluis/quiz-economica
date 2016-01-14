@@ -2177,7 +2177,7 @@ table th[class*="span"],
 .table td.span3,
 .table th.span3 {
   float: none;
-  width: 204px;
+  width: 24%;
   margin-left: 0;
 }
 
@@ -6173,6 +6173,31 @@ a.badge:focus {
   position:block;
   background-image: url("../img/quizmain.png");
   background-size: 100% 100%;
+}
+
+.iconpreg {
+  width: 80px;
+  height: 75px;
+  margin:0 auto;
+  position:block;
+  background-image: url("../img/quizpreg.png");
+  background-size: 100% 100%;
+}
+
+.iconrcans {
+  width: 80px;
+  height: 75px;
+  margin:0 auto;
+  position:block;
+  background-image: url("../img/rcanswer.png");
+  background-size: 100% 100%;
+}
+
+.estonline {
+  padding: 10px;
+  background-image: url("../img/online.png");
+  width:10px;
+  height:10px;
 }
 
 @media screen and (max-width: 400px){
