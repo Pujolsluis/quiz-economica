@@ -5,10 +5,10 @@
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src='http://localhost:3000/socket.io/socket.io.js'></script>
+    <script src='http://10.0.0.2:3000/socket.io/socket.io.js'></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimun-scale=1.0">
     <script>
-        var socket = io.connect('http://localhost:3000');
+        var socket = io.connect('http://10.0.0.2:3000');
         var connected = false;
         var username = '';
         var questions;
@@ -110,7 +110,6 @@
               
             <div class='show_questions' style='display:none;'>
               <div class='iconpreg'></div>
-              <h2>Pregunta</h2>
               <div id='question'>
                 <h3 id='question_title'></h3>
                 <form id='answersForm'>
@@ -123,7 +122,7 @@
             <div class='show_accepted' style='display:none;'>
               <div class='iconrcans'></div>
               <h2>Pregunta Respondida</h2>
-              <p>Atienda a la exposicion.</p> 
+              <p>Atienda a la exposicion, y espere que se desbloqueé la siguiente pregunta.</p> 
               </div>
                           
             <div class='show_registered' style='display:none;'>

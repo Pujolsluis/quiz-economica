@@ -1,11 +1,19 @@
 {"questions":
  [
-	{"question": "Pregunta 1", 
-     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
-	{"question": "Pregunta 2", 
-     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
-	{"question": "Pregunta 3", 
-     "choices": ["Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4"], "correctAnswer":0},
-	{"question": "Pregunta 4", 
-     "choices": ["Too live happily", "To give to the greater good"], "correctAnswer":1}
+	{"question": "Pregunta 1: En que año salio a la luz que el gobierno griego estaba falsificando sus datos macroeconomicos?", 
+     "choices": ["A. 2001", "B. 2007", "C. 2009", "D. 2015"], "correctAnswer":2},
+	{"question": "Pregunta 2: Año de la gran recesión que derrumbó la economía griega?", 
+     "choices": ["A. 2009", "B. 2007", "C. 2010", "D. 2008"], "correctAnswer":3},
+	{"question": "Pregunta 3: Cual es el servicio Publico que se ha visto mas afectado en Grecia?", 
+     "choices": ["A. El Transporte", "B. La Educación", "C. La Salud", "D. La Justicia"], "correctAnswer":2},
+	{"question": "Pregunta 4: Cuantos Programas de rescate economico han ocurrido?", 
+     "choices": ["A. 5", "B. 3", "C. 1", "D. 2"], "correctAnswer":1},
+     {"question": "Pregunta 5: Aproximadamente de cuanto es la deuda de Grecia según lo expuesto?", 
+     "choices": ["A. 45 Mil Millones de Euros","B. 220 Mil Millones de Dolares", "C. 225 Mil Millones de Euros", "D. 320 Mil Millones de Euros"], "correctAnswer":3},
+     {"question": "Pregunta Extra 1: Cual es el lado positivo de la crisis en Grecia?", 
+     "choices": ["A. Mas Turismo","B. Menos Corrupción", "C. Menos Problemas", "D. Mas Construcciones"], "correctAnswer":1},
+     {"question": "Pregunta Extra 2: Porque el gobierno le daba bonos a los trabajadores?", 
+     "choices": ["A. Por realizar su trabajo a tiempo", "B. Tener su escritorio organizado", "C. Por llegar a tiempo", "D. Por Trabajar de Madrugada"], "correctAnswer":3},
+     {"question": "Pregunta Extra 3: Quienes son el mejor grupo que ha expuesto?", 
+     "choices": ["A. El de la Crisis de Grecia","B. Los de Grecia Manitoxhh!", "C. Papa y eso se pregunta? Grecia Klk tu dice!", "D. ...GRECIA!!!! \\o/!! *HOY SE BEBEEE*"], "correctAnswer":3}
 ]}
