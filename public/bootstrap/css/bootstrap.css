@@ -6207,6 +6207,9 @@ a.badge:focus {
       margin:0 auto;
       overflow:hidden;
     }
+    .span3{
+      width:95%;
+    }
     .span4{
       width: 95%;
     }
